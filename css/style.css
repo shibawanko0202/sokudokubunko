@@ -1,0 +1,254 @@
+/* common */
+:root{
+  --sokudoku: rgb(216, 180, 127);
+  --sokudokuText: rgb(172, 95, 7);
+  --contents:rgb(240, 220, 178);
+  --contentsShadow: rgba(172, 95, 7, .5);
+}
+html{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  user-select: none;
+  overflow: hidden;
+}
+body{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: 'Noto Serif JP', serif;
+}
+#coverbottom{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: calc(100% - 20px);
+  width: calc(100% - 20px);
+  margin: 0;
+  padding: 10px;
+  background-color: var(--sokudoku);
+  backface-visibility: hidden; 
+  transition: transform 2s;
+  transform-origin: right;
+  z-index: 1;
+}
+#coverbottom.disabled{
+  transform-origin: right;
+  transform: perspective(1000px) rotateY(100deg);
+}
+/* この↑に問題があると思われる(殺意) */
+#covermiddle{
+  height: calc(100% - 100px);
+  width: calc(100% - 100px);
+  padding: 50px;
+  color: var(--sokudokuText);
+  background-image: url("../img/iwanami.png");
+  background-size: contain;
+  background-repeat: repeat;
+}
+#covertop{
+  height: 100%;
+  position: relative;
+  background-color: var(--sokudoku);
+  overflow: hidden;
+}
+
+/* header */
+header{
+  /* position: absolute;
+  top: 30px; */
+  /* height: 50px; */
+  width: 100%;
+  margin: 0;
+  padding: 20px 0;
+  /* color: white; */
+  text-align: center;
+}
+header h1{
+  margin: 0;
+  font-weight: normal;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+/* main */
+main{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* background-color: #999; */
+  text-align: center;
+  margin: auto;
+}
+#title{
+  display: inline-flex;
+  justify-content: center;
+  margin: 10px auto;
+  cursor: pointer;
+  transition: all .6s;
+}
+#title:hover{
+  color: #fff;
+}
+#title h2{
+  margin: 0 16px 0 0;
+  line-height: 40px;
+  font-size: 16px;
+  font-weight: normal;
+}
+#title h1{
+  line-height: 40px;
+  font-weight: normal;
+  margin: 0;
+  font-size: 32px;
+  /* color: #fff; */
+}
+#text{
+  border: 1px solid #fff;
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  margin: 0 auto 20px;
+  text-align: center;
+  /* background-color: #fff; */
+  color: #fff;
+}
+#control{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+#start,
+#stop{
+  width: 40px;
+  height: 24px;
+  line-height: 24px;
+  border: 1px solid var(--sokudokuText);
+  /* background-color: #ddd; */
+  color: var(--sokudokuText);
+  text-align: center;
+  cursor: pointer;
+  margin: 0 4px;
+  transition: all .6s;
+}
+#start.disabled,
+#stop.disabled{
+  opacity: .5;
+  pointer-events: none;
+}
+#start:hover,
+#stop:hover{
+  border: 1px solid #fff;
+  color: #fff;
+}
+#control small a{
+  line-height: 24px;
+  margin-left: 10px;
+  text-decoration: none;
+  color: var(--sokudokuText); 
+  transition: all .6s;
+}
+#control small a:hover{
+  color: #fff;
+}
+main p{
+  display: inline-block;
+  /* width: 140px; */
+  opacity: .3;
+  margin: 0 auto;
+  height: 30px;
+  font-size: 16px;
+  color: var(--sokudokuText);
+  cursor: pointer;
+  transition: all .3s;
+}
+main p:hover{
+  opacity: 1;
+  /* color: #fff; */
+}
+
+/* footer */
+footer{
+  position: absolute;
+  bottom: 0;
+  height: 50px;
+  line-height: 50px;
+  width: 100%;
+  text-align: center;
+  text-decoration: underline;
+}
+
+/* 目次 */
+#contents{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: calc(100% - 100px);
+  height: calc(100% - 100px);
+  writing-mode: vertical-rl;
+  background-color: var(--contents);
+  color: black;
+  padding: 50px;
+  box-shadow: inset 0 0 100px var(--contentsShadow);
+  transition: all 2s;
+  /* z-index: -1; */
+}
+#contents > p{
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  writing-mode: horizontal-tb;
+  font-size: 8px;
+}
+#contents h1{
+  font-weight: normal;
+  font-size: 24px;
+  margin: 100px 0 0 40px;
+}
+#contents ul{
+  padding: 0;
+  margin-top: 60px;
+}
+#contents ul li{
+  list-style: none;
+  cursor: pointer;
+  transition: all .3s;
+}
+#contents ul li:hover{
+  color: var(--sokudokuText);
+}
+#contents ul li + li{
+  margin-right: 30px;
+}
+#contents ul li section{
+  display: flex;
+}
+#contents ul li section h2{
+  font-weight: normal;
+  margin: 0;
+  font-size: 24px;
+  line-height: 24px;
+}
+#contents ul li section .dot{
+  margin: 10px 0;
+  font-size: 10px;
+  line-height: 24px;
+}
+#minutes{
+  font-size: 12px;
+  line-height: 24px;
+  writing-mode: horizontal-tb;
+  text-align: center;
+}
+#contents ul li section p{
+  font-size: 12px;
+  line-height: 24px;
+}
+#contents ul li p{
+  margin: 0;
+  font-size: 16px;
+}
