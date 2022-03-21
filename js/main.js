@@ -1,43 +1,64 @@
 "use strict"
 
 //DOMの取得
-const title = document.getElementById("title");
-const bookName = document.getElementById("bookname");
-const bookTitle = document.getElementById("booktitle");
-const text = document.getElementById("text");
+const signBord = document.getElementById("signbord");
+const coverAuthor = document.getElementById("cover_author");
+const coverTitle = document.getElementById("cover_title");
+const textBord = document.getElementById("textbord");
 const after = document.getElementsByClassName("after");
 const start = document.getElementById("start");
 const stop = document.getElementById("stop");
 const contents = document.getElementById("contents");
-const souseki = document.getElementById("souseki");
-const dazai = document.getElementById("dazai");
-const kenji = document.getElementById("kenji");
+const content = document.getElementsByClassName("content");
+const contentTitle = document.getElementsByClassName("content_title");
+const contentChapter = document.getElementsByClassName("content_chapter");
+const contentAuthor = document.getElementsByClassName("content_author");
+const dots = document.getElementsByClassName("dots");
+const seconds = document.getElementsByClassName("seconds");
 const cover = document.getElementById("coverbottom");
 
-// const books = [
-//   {
-//     title:
-//   }
-// ];
+//書籍
+const books = [heart,walker,human,bereavement];
 
-//選択書籍
+//選択タイトル
 let currentTitle = heart;
 
 let bookmark = 0;
 let timer;
 let isPlay = false;
 
+//目次の表示
+for(let i = 0;i < content.length;i++){
+  contentTitle[i].textContent = books[i].title;
+  contentChapter[i].textContent = books[i].chapter;
+  contentAuthor[i].textContent = books[i].author;
+  seconds[i].textContent = tokansuzi(Math.ceil(books[i].text.length / 5));
+  let dot = "･････";
+  dots[i].textContent = dot.repeat(14 - books[i].title.length);
+};
+
+//漢数字に変換
+function tokansuzi(num){
+  let txt = ["○","一","二","三","四","五","六","七","八","九"];
+  let str = "";
+  for(let i = 0;i < String(num).length; i++){
+    str += `${txt[String(num).charAt(i)]}`;
+  };
+  return str;
+};
+
+//ロード終了時にアニメーション
 setTimeout(() => {
   cover.classList.add("disabled");
-}, 700);
+}, 750);
 
 //ページ送り機構
 function flipPage(title){
-  text.textContent = title[bookmark];
+  textBord.textContent = title.text[bookmark];
   for(let i = 0;i <= 7;i++){
-    after[i].textContent = title[bookmark - (i + 1)];
+    after[i].textContent = title.text[bookmark - (i + 1)];
   };
-  if(bookmark == title.length -1){
+  if(bookmark == title.text.length -1){
     clearInterval(timer);
     stop.classList.add("disabled");
   };
@@ -77,51 +98,23 @@ for(let i = 0;i <= 7;i++){
 };
 
 //目次に移動
-title.addEventListener("click",()=>{
-  // contents.classList.remove("disabled");
+signBord.addEventListener("click",()=>{
   cover.classList.add("disabled");
   stopped();
 });
 
-//人間失格
-dazai.addEventListener("click",()=>{
-  // contents.classList.add("disabled");
-  cover.classList.remove("disabled");
-  if(currentTitle === human){
-    return;
-  };
-  currentTitle = human;
-  bookmark = 0;
-  bookName.textContent = "太宰治";
-  bookTitle.textContent = "人間失格";
-  flipPage(human);
-  text.textContent = "ここに注目して下さい";
-});
-
-//こころ
-souseki.addEventListener("click",()=>{
-  cover.classList.remove("disabled");
-  if(currentTitle === heart){
-    return;
-  };
-  currentTitle = heart;
-  bookmark = 0;
-  bookName.textContent = "夏目漱石";
-  bookTitle.textContent = "こころ";
-  flipPage(heart);
-  text.textContent = "ここに注目して下さい";
-});
-
-//永訣の朝
-kenji.addEventListener("click",()=>{
-  cover.classList.remove("disabled");
-  if(currentTitle === goodbye){
-    return;
-  };
-  currentTitle = goodbye;
-  bookmark = 0;
-  bookName.textContent = "宮沢賢治";
-  bookTitle.textContent = "永訣の朝";
-  flipPage(goodbye);
-  text.textContent = "ここに注目して下さい";
-});
+//目次からタイトルを選択
+for(let i = 0;i < content.length;i++){
+  content[i].addEventListener("click",()=>{
+    cover.classList.remove("disabled");
+    if(currentTitle === books[i]){
+      return;
+    };
+    currentTitle = books[i];
+    bookmark = 0;
+    coverAuthor.textContent = books[i].author;
+    coverTitle.textContent = books[i].title;
+    flipPage(books[i]);
+    textBord.textContent = "ここに注目して下さい";
+  });
+};

@@ -27,6 +27,7 @@ body{
   margin: 0;
   padding: 10px;
   background-color: var(--sokudoku);
+  box-shadow: 0 0 10px rgba(0,0,0,.2);
   backface-visibility: hidden; 
   transition: transform 2s;
   transform-origin: right;
@@ -81,30 +82,30 @@ main{
   text-align: center;
   margin: auto;
 }
-#title{
+#signbord{
   display: inline-flex;
   justify-content: center;
   margin: 10px auto;
   cursor: pointer;
   transition: all .6s;
 }
-#title:hover{
+#signbord:hover{
   color: #fff;
 }
-#title h2{
+#signbord h2{
   margin: 0 16px 0 0;
   line-height: 40px;
   font-size: 16px;
   font-weight: normal;
 }
-#title h1{
+#signbord h1{
   line-height: 40px;
   font-weight: normal;
   margin: 0;
   font-size: 32px;
   /* color: #fff; */
 }
-#text{
+#textbord{
   border: 1px solid #fff;
   width: 200px;
   height: 40px;
@@ -233,20 +234,21 @@ footer{
   font-size: 24px;
   line-height: 24px;
 }
-#contents ul li section .dot{
+#contents ul li section .dots{
   margin: 10px 0;
   font-size: 10px;
   line-height: 24px;
 }
-#minutes{
-  font-size: 12px;
+#contents ul li .seconds{
+  font-size: 20px;
   line-height: 24px;
-  writing-mode: horizontal-tb;
   text-align: center;
+  transform: scaleY(.4);
+  transform-origin: top;
 }
-#contents ul li section p{
-  font-size: 12px;
-  line-height: 24px;
+#contents ul li .seconds::after{
+  margin-top: 6px;
+  content: "秒";
 }
 #contents ul li p{
   margin: 0;

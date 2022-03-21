@@ -13,18 +13,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="coverbottom">
+  <div id="coverbottom" class="disabled">
     <div id="covermiddle">
       <div id="covertop">
         <header>
           <h1>速 読 強 要 文 庫</h1>
         </header>
         <main>
-          <div id="title">
-            <h2 id="bookname">夏目漱石</h2>
-            <h1 id="booktitle">こころ</h1>
+          <div id="signbord">
+            <h2 id="cover_author">夏目漱石</h2>
+            <h1 id="cover_title">こころ</h1>
           </div>
-          <div id="text">ここに注目して下さい</div>
+          <div id="textbord">ここに注目して下さい</div>
           <div id="control">
             <div id="start">開始</div>
             <div id="stop" class="disabled">停止</div>
@@ -48,49 +48,50 @@
     </div>
   </div>
   <div id="contents">
-    <p>1　　一部冒頭のみ</p>
+    <p>1&emsp;&emsp;目次</p>
     <h1>目次</h1>
     <ul>
-      <li id="souseki">
+      <li class="content">
         <section>
-          <h2>こころ</h2>
-          <div class="dot">
-            ･････････････････････････････････････････････
-          </div><p id="minutes">24</p><p>分</p>
+          <h2 class="content_title"></h2>
+          <div class="dots"></div>
+          <p class="seconds"></p>
         </section>
-        <p>夏目漱石</p>
+        <p class="content_chapter"></p>
+        <p class="content_author"></p>
       </li>
-      <li id="dazai">
+      <li class="content">
         <section>
-          <h2>人間失格</h2>
-          <div class="dot">
-            ････････････････････････････････････････
-          </div><p id="minutes">24</p><p>分</p>
+          <h2 class="content_title"></h2>
+          <div class="dots"></div>
+          <p class="seconds"></p>
         </section>
-        <p>太宰治</p>
+        <p class="content_chapter"></p>
+        <p class="content_author"></p>
       </li>
-      <li id="kenji">
+      <li class="content">
         <section>
-          <h2>永訣の朝</h2>
-          <div class="dot">
-            ････････････････････････････････････････
-          </div><p id="minutes">24</p><p>分</p>
+          <h2 class="content_title"></h2>
+          <div class="dots"></div>
+          <p class="seconds"></p>
         </section>
-        <p>宮沢賢治</p>
+        <p class="content_chapter"></p>
+        <p class="content_author"></p>
       </li>
-      <li>
+      <li class="content">
         <section>
-          <h2>変身</h2>
-          <div class="dot">
-            ･････････････････････････････････････････････････
-          </div><p id="minutes">24</p><p>分</p>
+          <h2 class="content_title"></h2>
+          <div class="dots"></div>
+          <p class="seconds"></p>
         </section>
-        <p>カフカ</p>
+        <p class="content_chapter"></p>
+        <p class="content_author"></p>
       </li>
     </ul>
   </div>
   <!-- javascript -->
-  <script src="js/goodbye.js"></script>
+  <script src="js/walker.js"></script>
+  <script src="js/bereavement.js"></script>
   <script src="js/heart.js"></script>
   <script src="js/human.js"></script>
   <script src="js/main.js"></script>

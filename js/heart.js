@@ -1,5 +1,9 @@
 
-const heart = [
+const heart = {
+  title: "こころ",
+  chapter: "先生と私　一",
+  author: "夏目漱石",
+  text: [
   "",
   "私は",
   "その人を",
@@ -549,4 +553,5 @@ const heart = [
   "",
   "",
   "こころ 1 終",
-];
+],
+};
