@@ -8,22 +8,20 @@
 html{
   width: 100%;
   height: 100%;
-  margin: 0;
   user-select: none;
   overflow: hidden;
 }
 body{
   width: 100%;
   height: 100%;
-  margin: 0;
   font-family: 'Noto Serif JP', serif;
 }
 #coverbottom{
   position: absolute;
   bottom: 0;
   right: 0;
-  height: calc(100% - 20px);
-  width: calc(100% - 20px);
+  height: 100%;
+  width: 100%;
   max-width: 500px;
   margin: 0;
   padding: 10px;
@@ -39,8 +37,8 @@ body{
   transform: perspective(1000px) rotateY(100deg);
 }
 #covermiddle{
-  height: calc(100% - 90px);
-  width: calc(100% - 90px);
+  height: 100%;
+  width: 100%;
   padding: 45px;
   color: var(--sokudokuText);
   background-image: url("../img/iwanami.png");
@@ -99,7 +97,6 @@ main{
   font-weight: normal;
   margin: 0;
   font-size: 32px;
-  /* color: #fff; */
 }
 #textbord{
   border: 1px solid #fff;
@@ -109,7 +106,6 @@ main{
   font-size: 16px;
   margin: 0 auto 20px;
   text-align: center;
-  /* background-color: #fff; */
   color: #fff;
 }
 #control{
@@ -123,7 +119,6 @@ main{
   height: 24px;
   line-height: 24px;
   border: 1px solid var(--sokudokuText);
-  /* background-color: #ddd; */
   color: var(--sokudokuText);
   text-align: center;
   cursor: pointer;
@@ -152,7 +147,6 @@ main{
 }
 main p{
   display: inline-block;
-  /* width: 140px; */
   opacity: .3;
   margin: 0 auto;
   height: 30px;
@@ -163,7 +157,6 @@ main p{
 }
 main p:hover{
   opacity: 1;
-  /* color: #fff; */
 }
 
 /* footer */
@@ -184,22 +177,21 @@ footer{
   left: 0;
   bottom: 0;
   right: 0;
-  width: calc(100% - 100px);
-  height: calc(100% - 100px);
+  width: 100%;
+  height: 100%;
   writing-mode: vertical-rl;
   background-color: var(--contents);
   color: black;
   padding: 50px;
   box-shadow: inset 0 0 100px var(--contentsShadow);
   transition: all 2s;
-  /* z-index: -1; */
 }
 #contents > p{
   position: absolute;
   top: 20px;
   left: 40px;
   writing-mode: horizontal-tb;
-  font-size: 8px;
+  font-size: 14px;
 }
 #contents h1{
   font-weight: normal;
