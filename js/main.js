@@ -16,8 +16,9 @@ const contentAuthor = document.getElementsByClassName("content_author");
 const dots = document.getElementsByClassName("dots");
 const seconds = document.getElementsByClassName("seconds");
 const cover = document.getElementById("coverbottom");
-
 const coverReverse = document.getElementById("cover_reverse");
+
+const mekuru = document.getElementById("mekuru");
 
 //書籍
 const books = [heart,walker,human,bereavement];
@@ -48,9 +49,10 @@ function tokansuzi(num){
 };
 
 //ロード終了時にアニメーション
-setTimeout(() => {
-  cover.classList.add("disabled");
-}, 750);
+// setTimeout(() => {
+//   cover.classList.add("disabled");
+//   coverReverse.classList.remove("disabled");
+// }, 750);
 
 //ページ送り機構
 function flipPage(title){
@@ -102,6 +104,23 @@ signBord.addEventListener("click",()=>{
   cover.classList.add("disabled");
   coverReverse.classList.remove("disabled");
   stopped();
+});
+mekuru.addEventListener("click",()=>{
+  cover.classList.add("disabled");
+  coverReverse.classList.remove("disabled");
+  cover.classList.remove("op");
+  coverReverse.classList.remove("op");
+  stopped();
+});
+
+//めくる
+mekuru.addEventListener("mouseover",()=>{
+  cover.classList.add("op");
+  coverReverse.classList.add("op");
+});
+mekuru.addEventListener("mouseleave",()=>{
+  cover.classList.remove("op");
+  coverReverse.classList.remove("op");
 });
 
 //目次からタイトルを選択
