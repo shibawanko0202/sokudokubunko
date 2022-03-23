@@ -33,8 +33,8 @@ for(let i = 0;i < content.length;i++){
   contentChapter[i].textContent = books[i].chapter;
   contentAuthor[i].textContent = books[i].author;
   seconds[i].textContent = tokansuzi(Math.ceil(books[i].text.length / 5));
-  let dot = "･････";
-  dots[i].textContent = dot.repeat(14 - books[i].title.length);
+  // let dot = "･････";
+  // dots[i].textContent = dot.repeat(14 - books[i].title.length);
 };
 
 //漢数字に変換

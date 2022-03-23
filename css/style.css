@@ -191,19 +191,19 @@ footer{
 }
 #contents > p{
   position: absolute;
-  top: 20px;
+  top: 15px;
   left: 40px;
   writing-mode: horizontal-tb;
-  font-size: 14px;
+  font-size: 12px;
 }
 #contents h1{
   font-weight: normal;
-  font-size: 24px;
-  margin: 100px 0 0 40px;
+  font-size: 20px;
+  margin: 150px 0 0 30px;
 }
 #contents ul{
   padding: 0;
-  margin: auto 0;
+  margin: 50px 0;
 }
 .content{
   height: 100%;
@@ -215,7 +215,7 @@ footer{
   color: var(--sokudokuText);
 }
 #contents ul li + li{
-  margin-right: 30px;
+  margin-right: 10px;
 }
 .content section{
   display: flex;
@@ -225,17 +225,36 @@ footer{
   white-space: nowrap;
   font-weight: normal;
   margin: 0;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 24px;
 }
-.content section .dots{
-  /* height: 100%; */
+/* .dots{
   margin: 10px 0;
   font-size: 10px;
   line-height: 24px;
   overflow: hidden;
+} */
+.dots{
+  height: 100%;
+  width: 3.4px;
+  margin: 10px auto;
+  /* border: 2px dotted black; */
+  /* transform: scale(.9); */
+  position: relative;
+}
+.dots:after {
+  position: absolute;
+  left: 0px;
+  background: radial-gradient(circle farthest-side, black, black 60%, transparent 60%, transparent);
+  background-size: 3.4px 3.4px;
+  opacity: .5;
+  content: '';
+  display: inline-block;
+  height: 100%;
+  width: 3.4px;
 }
 .content .seconds{
+  height: 50px;
   font-size: 20px;
   line-height: 24px;
   text-align: center;
@@ -249,7 +268,7 @@ footer{
 }
 .content p{
   margin: 0;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 /* desktop */
