@@ -17,6 +17,8 @@ const dots = document.getElementsByClassName("dots");
 const seconds = document.getElementsByClassName("seconds");
 const cover = document.getElementById("coverbottom");
 
+const coverReverse = document.getElementById("cover_reverse");
+
 //書籍
 const books = [heart,walker,human,bereavement];
 
@@ -33,8 +35,6 @@ for(let i = 0;i < content.length;i++){
   contentChapter[i].textContent = books[i].chapter;
   contentAuthor[i].textContent = books[i].author;
   seconds[i].textContent = tokansuzi(Math.ceil(books[i].text.length / 5));
-  // let dot = "･････";
-  // dots[i].textContent = dot.repeat(14 - books[i].title.length);
 };
 
 //漢数字に変換
@@ -100,6 +100,7 @@ for(let i = 0;i <= 7;i++){
 //目次に移動
 signBord.addEventListener("click",()=>{
   cover.classList.add("disabled");
+  coverReverse.classList.remove("disabled");
   stopped();
 });
 
@@ -107,6 +108,7 @@ signBord.addEventListener("click",()=>{
 for(let i = 0;i < content.length;i++){
   content[i].addEventListener("click",()=>{
     cover.classList.remove("disabled");
+    coverReverse.classList.add("disabled");
     if(currentTitle === books[i]){
       return;
     };
