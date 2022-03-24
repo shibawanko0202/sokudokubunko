@@ -108,20 +108,8 @@ signBord.addEventListener("click",()=>{
 mekuru.addEventListener("click",()=>{
   cover.classList.add("disabled");
   coverReverse.classList.remove("disabled");
-  cover.classList.remove("op");
-  coverReverse.classList.remove("op");
   stopped();
 });
-
-//めくる
-// mekuru.addEventListener("mouseover",()=>{
-//   cover.classList.add("op");
-//   coverReverse.classList.add("op");
-// });
-// mekuru.addEventListener("mouseleave",()=>{
-//   cover.classList.remove("op");
-//   coverReverse.classList.remove("op");
-// });
 
 //目次からタイトルを選択
 for(let i = 0;i < content.length;i++){
