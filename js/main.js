@@ -1,45 +1,44 @@
 "use strict"
 
-//DOMの取得
+const turn = document.getElementById("turn");
+//表紙
 const signBord = document.getElementById("signbord");
-const coverAuthor = document.getElementById("cover_author");
-const coverTitle = document.getElementById("cover_title");
+const cover = document.getElementById("cover_bottom");
+const cover_reverse = document.getElementById("cover_reverse");
+const cover_author = document.getElementById("cover_author");
+const cover_title = document.getElementById("cover_title");
 const textBord = document.getElementById("textbord");
 const after = document.getElementsByClassName("after");
 const start = document.getElementById("start");
 const stop = document.getElementById("stop");
+//目次
 const contents = document.getElementById("contents");
 const content = document.getElementsByClassName("content");
-const contentTitle = document.getElementsByClassName("content_title");
-const contentChapter = document.getElementsByClassName("content_chapter");
-const contentAuthor = document.getElementsByClassName("content_author");
-const dots = document.getElementsByClassName("dots");
+const content_title = document.getElementsByClassName("content_title");
+const content_chapter = document.getElementsByClassName("content_chapter");
+const content_author = document.getElementsByClassName("content_author");
 const seconds = document.getElementsByClassName("seconds");
-const cover = document.getElementById("coverbottom");
-const coverReverse = document.getElementById("cover_reverse");
-
-const mekuru = document.getElementById("mekuru");
 
 //書籍
 const books = [heart,walker,human,bereavement];
 
 //選択タイトル
-let currentTitle = heart;
+let current_title = heart;
 
 let bookmark = 0;
 let timer;
-let isPlay = false;
+let is_play = false;
 
 //目次の表示
 for(let i = 0;i < content.length;i++){
-  contentTitle[i].textContent = books[i].title;
-  contentChapter[i].textContent = books[i].chapter;
-  contentAuthor[i].textContent = books[i].author;
-  seconds[i].textContent = tokansuzi(Math.ceil(books[i].text.length / 5));
+  content_title[i].textContent = books[i].title;
+  content_chapter[i].textContent = books[i].chapter;
+  content_author[i].textContent = books[i].author;
+  seconds[i].textContent = to_kansuzi(Math.ceil(books[i].text.length / 5));
 };
 
 //漢数字に変換
-function tokansuzi(num){
+function to_kansuzi(num){
   let txt = ["○","一","二","三","四","五","六","七","八","九"];
   let str = "";
   for(let i = 0;i < String(num).length; i++){
@@ -49,13 +48,10 @@ function tokansuzi(num){
 };
 
 //ロード終了時にアニメーション
-// setTimeout(() => {
-//   cover.classList.add("disabled");
-//   coverReverse.classList.remove("disabled");
-// }, 750);
+setTimeout(turn_cover, 750);
 
-//ページ送り機構
-function flipPage(title){
+//ページ送り
+function flip_page(title){
   textBord.textContent = title.text[bookmark];
   for(let i = 0;i <= 7;i++){
     after[i].textContent = title.text[bookmark - (i + 1)];
@@ -67,14 +63,26 @@ function flipPage(title){
   bookmark++;
 };
 
+//表紙をめくる
+function turn_cover(){
+  if(cover.classList.contains("open")){
+    cover.classList.remove("open");
+    cover_reverse.classList.remove("open");
+  } else {
+    cover.classList.add("open");
+    cover_reverse.classList.add("open");
+    stopped();
+  };
+};
+
 //開始ボタン
 start.addEventListener("click",()=>{
   start.classList.add("disabled");
   stop.classList.remove("disabled");
   timer = setInterval(() => {
-    flipPage(currentTitle);
+    flip_page(current_title);
   }, 250);
-  isPlay = true;
+  is_play = true;
 });
 
 //停止ボタン
@@ -85,45 +93,37 @@ function stopped(){
   start.classList.remove("disabled");
   stop.classList.add("disabled");
   clearInterval(timer);
-  isPlay = false;
+  is_play = false;
 };
 
 //巻き戻し
 for(let i = 0;i <= 7;i++){
   after[i].addEventListener("click",()=>{
-    if(isPlay){
+    if(is_play){
       return;
     };
     bookmark -= (i + 2);
-    flipPage(currentTitle);
+    flip_page(current_title);
   });
 };
 
 //目次に移動
-signBord.addEventListener("click",()=>{
-  cover.classList.add("disabled");
-  coverReverse.classList.remove("disabled");
-  stopped();
-});
-mekuru.addEventListener("click",()=>{
-  cover.classList.add("disabled");
-  coverReverse.classList.remove("disabled");
-  stopped();
-});
+signBord.addEventListener("click",turn_cover);
+turn.addEventListener("click",turn_cover);
+cover_reverse.addEventListener("click",turn_cover);
 
 //目次からタイトルを選択
 for(let i = 0;i < content.length;i++){
   content[i].addEventListener("click",()=>{
-    cover.classList.remove("disabled");
-    coverReverse.classList.add("disabled");
-    if(currentTitle === books[i]){
+    turn_cover();
+    if(current_title === books[i]){
       return;
     };
-    currentTitle = books[i];
+    current_title = books[i];
     bookmark = 0;
-    coverAuthor.textContent = books[i].author;
-    coverTitle.textContent = books[i].title;
-    flipPage(books[i]);
+    cover_author.textContent = books[i].author;
+    cover_title.textContent = books[i].title;
+    flip_page(books[i]);
     textBord.textContent = "ここに注目して下さい";
   });
 };
