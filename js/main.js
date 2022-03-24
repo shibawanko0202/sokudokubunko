@@ -34,7 +34,7 @@ for(let i = 0;i < content.length;i++){
   content_title[i].textContent = books[i].title;
   content_chapter[i].textContent = books[i].chapter;
   content_author[i].textContent = books[i].author;
-  seconds[i].textContent = to_kansuzi(Math.ceil(books[i].text.length / 5));
+  seconds[i].textContent = to_kansuzi(Math.ceil((books[i].text.length / 5) * 1.3));
 };
 
 //漢数字に変換
@@ -48,12 +48,12 @@ function to_kansuzi(num){
 };
 
 //ロード終了時にアニメーション
-setTimeout(turn_cover, 750);
+window.onload = setTimeout(turn_cover, 750);
 
 //ページ送り
 function flip_page(title){
   textBord.textContent = title.text[bookmark];
-  for(let i = 0;i <= 7;i++){
+  for(let i = 0;i < after.length;i++){
     after[i].textContent = title.text[bookmark - (i + 1)];
   };
   if(bookmark == title.text.length -1){
