@@ -2,12 +2,12 @@
 
 const turn = document.getElementById("turn");
 //表紙
-const signBord = document.getElementById("signbord");
+const signbord = document.getElementById("signbord");
 const cover = document.getElementById("cover_bottom");
 const cover_reverse = document.getElementById("cover_reverse");
 const cover_author = document.getElementById("cover_author");
 const cover_title = document.getElementById("cover_title");
-const textBord = document.getElementById("textbord");
+const textbord = document.getElementById("textbord");
 const after = document.getElementsByClassName("after");
 const start = document.getElementById("start");
 const stop = document.getElementById("stop");
@@ -48,11 +48,11 @@ function to_kansuzi(num){
 };
 
 //ロード終了時にアニメーション
-window.onload = setTimeout(turn_cover, 750);
+// window.onload = setTimeout(turn_cover, 750);
 
-//ページ送り
+//文字送り
 function flip_page(title){
-  textBord.textContent = title.text[bookmark];
+  textbord.textContent = title.text[bookmark];
   for(let i = 0;i < after.length;i++){
     after[i].textContent = title.text[bookmark - (i + 1)];
   };
@@ -60,19 +60,31 @@ function flip_page(title){
     clearInterval(timer);
     stop.classList.add("disabled");
   };
+  commentary(title);
   bookmark++;
 };
 
-//表紙をめくる
+//表紙の開閉
 function turn_cover(){
-  if(cover.classList.contains("open")){
-    cover.classList.remove("open");
-    cover_reverse.classList.remove("open");
-  } else {
-    cover.classList.add("open");
-    cover_reverse.classList.add("open");
-    stopped();
-  };
+  cover.classList.toggle("open")
+  cover_reverse.classList.toggle("open")
+  stopped();
+};
+
+//注釈
+function commentary(title){
+  comments.find((comment)=>{
+    if(title.text[bookmark].indexOf(comment.word) > -1){
+      textbord.addEventListener("mouseover",()=>{
+        textbord.textContent = `${comment.reading}:${comment.mean}`;
+        textbord.style.fontSize = "12px";
+      });
+      textbord.addEventListener("mouseleave",()=>{
+        textbord.textContent = title.text[bookmark - 1];
+        textbord.style.fontSize = "16px";
+      });
+    }
+  });
 };
 
 //開始ボタン
@@ -108,7 +120,7 @@ for(let i = 0;i <= 7;i++){
 };
 
 //目次に移動
-signBord.addEventListener("click",turn_cover);
+signbord.addEventListener("click",turn_cover);
 turn.addEventListener("click",turn_cover);
 cover_reverse.addEventListener("click",turn_cover);
 
@@ -124,6 +136,6 @@ for(let i = 0;i < content.length;i++){
     cover_author.textContent = books[i].author;
     cover_title.textContent = books[i].title;
     flip_page(books[i]);
-    textBord.textContent = "ここに注目して下さい";
+    textbord.textContent = "ここに注目して下さい";
   });
 };
