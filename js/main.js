@@ -48,7 +48,7 @@ function to_kansuzi(num){
 };
 
 //ロード終了時にアニメーション
-// window.onload = setTimeout(turn_cover, 750);
+window.onload = setTimeout(turn_cover, 750);
 
 //文字送り
 function flip_page(title){
