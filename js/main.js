@@ -2,9 +2,9 @@
 
 const turn = document.getElementById("turn");
 //表紙
-const signbord = document.getElementById("signbord");
 const cover = document.getElementById("cover_bottom");
 const cover_reverse = document.getElementById("cover_reverse");
+const signbord = document.getElementById("signbord");
 const cover_author = document.getElementById("cover_author");
 const cover_title = document.getElementById("cover_title");
 const textbord = document.getElementById("textbord");
@@ -78,7 +78,7 @@ function commentary(title){
   if(answer > -1){
     textbord.style.pointerEvents = "all";
     textbord.addEventListener("mouseover",()=>{
-      textbord.textContent = `${comments[answer].reading}:${comments[answer].mean}`;
+      textbord.textContent = `${comments[answer].reading} : ${comments[answer].mean}`;
       resize();
     });
     textbord.addEventListener("mouseleave",()=>{
