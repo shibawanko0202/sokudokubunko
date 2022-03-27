@@ -47,9 +47,6 @@ function to_kansuzi(num){
   return str;
 };
 
-//ロード終了時にアニメーション
-// window.onload = setTimeout(turn_cover, 750);
-
 //文字送り
 function flip_page(title){
   textbord.textContent = title.text[bookmark];
@@ -82,7 +79,7 @@ function commentary(title){
     textbord.style.pointerEvents = "all";
     textbord.addEventListener("mouseover",()=>{
       textbord.textContent = `${comments[answer].reading}:${comments[answer].mean}`;
-      textbord.style.fontSize = "12px";
+      resize();
     });
     textbord.addEventListener("mouseleave",()=>{
       textbord.textContent = title.text[bookmark - 1];
@@ -92,6 +89,19 @@ function commentary(title){
     textbord.style.pointerEvents = "none";
   };
 };
+
+//注釈がtextbordからはみ出ない様にサイズ変更
+function resize() {
+  for (let i = 16; 40 < textbord.scrollHeight && i > 10; i--){
+    textbord.style.fontSize = `${i}px`;
+  };
+};
+
+//ブラウザサイズを変更するたびにリサイズ
+window.addEventListener('resize',resize);
+
+//ロード終了時にアニメーション
+window.onload = setTimeout(turn_cover, 750);
 
 //開始ボタン
 start.addEventListener("click",()=>{
