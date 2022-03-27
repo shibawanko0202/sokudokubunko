@@ -48,7 +48,7 @@ function to_kansuzi(num){
 };
 
 //ロード終了時にアニメーション
-window.onload = setTimeout(turn_cover, 750);
+// window.onload = setTimeout(turn_cover, 750);
 
 //文字送り
 function flip_page(title){
@@ -66,25 +66,31 @@ function flip_page(title){
 
 //表紙の開閉
 function turn_cover(){
-  cover.classList.toggle("open")
-  cover_reverse.classList.toggle("open")
+  cover.classList.toggle("open");
+  cover_reverse.classList.toggle("open");
   stopped();
 };
 
-//注釈
+//注釈を表示
 function commentary(title){
-  comments.find((comment)=>{
-    if(title.text[bookmark].indexOf(comment.word) > -1){
-      textbord.addEventListener("mouseover",()=>{
-        textbord.textContent = `${comment.reading}:${comment.mean}`;
-        textbord.style.fontSize = "12px";
-      });
-      textbord.addEventListener("mouseleave",()=>{
-        textbord.textContent = title.text[bookmark - 1];
-        textbord.style.fontSize = "16px";
-      });
-    }
+  //注釈(comments)を検索
+  let answer = comments.findIndex((comment)=>{
+    return title.text[bookmark].indexOf(comment.word) > -1;
   });
+  //注釈にあったらマウスホバーで表示
+  if(answer > -1){
+    textbord.style.pointerEvents = "all";
+    textbord.addEventListener("mouseover",()=>{
+      textbord.textContent = `${comments[answer].reading}:${comments[answer].mean}`;
+      textbord.style.fontSize = "12px";
+    });
+    textbord.addEventListener("mouseleave",()=>{
+      textbord.textContent = title.text[bookmark - 1];
+      textbord.style.fontSize = "16px";
+    });
+  } else {
+    textbord.style.pointerEvents = "none";
+  };
 };
 
 //開始ボタン

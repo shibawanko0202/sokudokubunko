@@ -31,14 +31,14 @@ const comments = [
     mean: "田んぼ道。まっすぐな長い道。",
   },
   {
-    word: "銭",
+    word: "十銭",
     reading: "せん",
     mean: "1円=100銭",
   },
   {
     word: "燻ぶり",
     reading: "くすぶり・いぶり",
-    mean: "よく燃えずに煙が出る。",
+    mean: "よく燃えずに煙が出る様。",
   },
   {
     word: "藁葺",
