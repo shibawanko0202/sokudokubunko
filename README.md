@@ -1,6 +1,6 @@
 # 速読強要文庫
 
-[速読強要文庫](https://shibawanko0202.github.io/speedTyping/)←play!
+[速読強要文庫](https://shibawanko0202.github.io/sokudokubunko/)←play!
 
 名著を速読できるwebアプリです。
 
