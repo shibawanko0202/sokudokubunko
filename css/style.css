@@ -5,6 +5,7 @@
   --sokudokuText: rgb(172, 95, 7);
   --contents:rgb(240, 220, 178);
   --contentsShadow: rgba(172, 95, 7, .5);
+  --ink: rgb(7, 23, 58);
 }
 html{
   width: 100%;
@@ -36,6 +37,9 @@ body{
   cursor: pointer;
   z-index: 3;
 }
+
+/* cover */
+
 #cover_bottom{
   position: absolute;
   top: 0;
@@ -58,20 +62,10 @@ body{
 #cover_reverse{
   display: none;
 }
-#cover_reverse small{
-  position: absolute;
-  bottom: 20px;
-  right: 30px;
-  font-family: 'Reenie Beanie', cursive;
-  font-size: 24px;
-  transform: scaleX(-1) rotate(6deg);
-  color: rgb(7, 23, 58);
-}
 #cover_middle{
   height: 100%;
   width: 100%;
   padding: 45px;
-  color: var(--sokudokuText);
   background-image: url("../img/iwanami.png");
   background-size: contain;
   background-repeat: repeat;
@@ -80,6 +74,7 @@ body{
   height: 100%;
   position: relative;
   background-color: var(--sokudoku);
+  color: var(--sokudokuText);
   overflow: hidden;
 }
 
@@ -113,21 +108,19 @@ main{
   flex-wrap: wrap;
   justify-content: center;
   margin: 10px auto;
+  line-height: 40px;
+  font-weight: normal;
   cursor: pointer;
   transition: all .6s;
 }
 #signbord:hover{
   color: #fff;
 }
-#signbord h2{
+#cover_author{
   margin: 0 16px 0 0;
-  line-height: 40px;
   font-size: 16px;
-  font-weight: normal;
 }
-#signbord h1{
-  line-height: 40px;
-  font-weight: normal;
+#cover_title{
   margin: 0;
   font-size: 28px;
 }
@@ -140,7 +133,6 @@ main{
   justify-content: center;
   font-size: 16px;
   margin: 0 auto 16px;
-  text-align: center;
   color: #fff;
 }
 #control{
@@ -155,8 +147,6 @@ main{
   font-size: 16px;
   line-height: 28px;
   border: 1px solid var(--sokudokuText);
-  color: var(--sokudokuText);
-  text-align: center;
   cursor: pointer;
   margin: 0 4px;
   transition: all .6s;
@@ -176,23 +166,21 @@ main{
   margin-left: 10px;
   text-decoration: none;
   font-size: 14px;
-  color: var(--sokudokuText); 
   transition: all .6s;
 }
 #control small a:hover{
   color: #fff;
 }
-main p{
+.after{
   display: inline-block;
   opacity: .3;
   margin: 0 auto;
   height: 30px;
   font-size: 16px;
-  color: var(--sokudokuText);
   cursor: pointer;
   transition: all .3s;
 }
-main p:hover{
+.after:hover{
   opacity: 1;
 }
 
@@ -274,7 +262,7 @@ footer{
   margin: 10px auto;
   position: relative;
 }
-.dots::after {
+.dots::after{
   position: absolute;
   left: 0px;
   background: radial-gradient(circle farthest-side, black, black 60%, transparent 60%, transparent);
@@ -285,7 +273,7 @@ footer{
   height: 100%;
   width: 3.4px;
 }
-.content .seconds{
+.seconds{
   height: 50px;
   font-size: 20px;
   line-height: 24px;
@@ -294,20 +282,19 @@ footer{
   transform: scaleY(.4);
   transform-origin: top;
 }
-.content .seconds::after{
+.seconds::after{
   margin-top: 6px;
   content: "秒";
 }
-.content p{
+.content_chapter,
+.content_author{
   margin: 0;
   font-size: 14px;
 }
 
-/* desktop */
+/* wide */
 
 @media(min-width: 480px){
-  /* common */
-  
   #cover_middle{
     height: 100%;
     width: 100%;
@@ -341,6 +328,6 @@ footer{
     font-family: 'Reenie Beanie', cursive;
     font-size: 24px;
     transform: scaleX(-1) rotate(6deg);
-    color: rgb(7, 23, 58);
+    color: var(--ink);
   }
 }

@@ -1,6 +1,5 @@
 "use strict"
 
-const turn = document.getElementById("turn");
 //表紙
 const cover = document.getElementById("cover_bottom");
 const cover_reverse = document.getElementById("cover_reverse");
@@ -18,6 +17,8 @@ const content_title = document.getElementsByClassName("content_title");
 const content_chapter = document.getElementsByClassName("content_chapter");
 const content_author = document.getElementsByClassName("content_author");
 const seconds = document.getElementsByClassName("seconds");
+//両方
+const turn = document.getElementById("turn");
 
 //書籍
 const books = [heart,walker,human,bereavement];
