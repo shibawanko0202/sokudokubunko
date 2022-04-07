@@ -131,6 +131,7 @@ function resize() {
 
 //最初の訪問でははしがきを自動再生
 function auto(){
+  start_btn.classList.add("disabled");
   setTimeout(()=>{
   textbord.classList.add("show");
   },2000);

@@ -54,7 +54,7 @@ body{
   width: 100px;
   height: 100px;
   margin: 200px auto;
-  background-color: #ccc;
+  background-color: #999;
   opacity: .6;
   border-radius: 100%;
   animation: load 1s infinite ease-in-out;
