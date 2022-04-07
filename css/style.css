@@ -54,7 +54,7 @@ body{
   width: 100px;
   height: 100px;
   margin: 200px auto;
-  background-color: #fff;
+  background-color: #ccc;
   opacity: .6;
   border-radius: 100%;
   animation: load 1s infinite ease-in-out;
@@ -289,9 +289,6 @@ footer{
 .content:hover{
   opacity: .4;
 }
-.prologue{
-  margin-left: 20px;
-}
 #contents ul li + li{
   margin-right: 10px;
 }
@@ -307,6 +304,12 @@ footer{
   line-height: 24px;
   cursor: pointer;
   transition: all .3s;
+}
+.prologue{
+  margin-left: 16px;
+}
+.prologue .content_title{
+  font-size: 18px;
 }
 .dots{
   height: 100%;
