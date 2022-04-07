@@ -32,6 +32,10 @@ let bookmark = 0;
 let timer;
 let is_play = false;
 
+//訪問済みか否かの判定用(localStorage)
+const keyName = 'visited';
+const keyValue = true;
+
 //表紙の表示
 function render_cover(num){
   current_title = books[num];
@@ -54,14 +58,14 @@ function flip_page(title){
 
     //はしがきの場合は表紙をめくる
     if(current_title === prologue){
-    // turn_cover();
-    console.log("stop")
-    }
+      setTimeout(turn_cover, 1200);
+    };
   };
   commentary(title);
   bookmark++;
 };
 
+//再生
 function start(){
   start_btn.classList.add("disabled");
   stop_btn.classList.remove("disabled");
@@ -69,7 +73,7 @@ function start(){
     flip_page(current_title);
   }, 250);
   is_play = true;
-}
+};
 
 //停止
 function stopped(){
@@ -120,32 +124,40 @@ function commentary(title){
 
 //注釈がtextbordからはみ出ない様にサイズ変更
 function resize() {
-  for (let i = 16; 40 < textbord.scrollHeight && i > 10; i--){
+  for (let i = 16;40 < textbord.scrollHeight && i > 10;i--){
     textbord.style.fontSize = `${i}px`;
   };
 };
 
 //最初の訪問でははしがきを自動再生
 function auto(){
-  start();
-  if((current_title === prologue) && (!is_play)){
-    // turn_cover();
-    console.log("stop")
-  }
+  setTimeout(()=>{
+  textbord.classList.add("show");
+  },2000);
+  setTimeout(()=>{
+    textbord.classList.remove("show");
+    start();
+  },6500);
 };
 
 //ブラウザサイズを変更するたびにリサイズ
 window.addEventListener('resize',resize);
 
-//ロードが完了したらロード画面を終了し、アニメーション
+//ロード画面の終了と初回訪問時のアナウンス
 window.onload = ()=>{
   loading.classList.add('loaded');
-  auto()
-  // setTimeout(turn_cover, 900);
+  if (!localStorage.getItem(keyName)) {
+    //初回訪問時の処理
+    localStorage.setItem(keyName, keyValue);
+    //最初は「はしがき」を表示して再生
+    render_cover(0);
+    auto()
+  } else { //二度目以降の訪問時の処理
+    //最初は「こころ」を表示しておく
+    render_cover(1);
+    setTimeout(turn_cover,1200);
+  };
 };
-
-//最初は「はしがき」を表示しておく
-render_cover(0);
 
 //開始ボタン
 start_btn.addEventListener("click",start);
