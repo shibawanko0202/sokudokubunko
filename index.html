@@ -22,6 +22,9 @@
   </script>
 </head>
 <body>
+  <div id="loading">
+    <div class="spinner"></div>
+  </div>
   <div id="turn"></div>
   <div id="cover_bottom">
     <div id="cover_middle">
@@ -36,8 +39,8 @@
           </div>
           <div id="textbord"></div>
           <div id="control">
-            <div id="start">開始</div>
-            <div id="stop" class="disabled">停止</div>
+            <div id="start_btn">開始</div>
+            <div id="stop_btn" class="disabled">停止</div>
             <small>
               <a href="https://www.aozora.gr.jp/" target="_blank" rel="noopener norefererrer">
                 出典：青空文庫
@@ -101,6 +104,15 @@
         <p class="content_chapter"></p>
         <p class="content_author"></p>
       </li>
+      <li class="content">
+        <section>
+          <h2 class="content_title"></h2>
+          <div class="dots"></div>
+          <p class="seconds"></p>
+        </section>
+        <p class="content_chapter"></p>
+        <p class="content_author"></p>
+      </li>
     </ul>
   </div>
   <!-- 書籍 -->
@@ -108,6 +120,7 @@
   <script src="js/bereavement.js"></script>
   <script src="js/heart.js"></script>
   <script src="js/human.js"></script>
+  <script src="js/prologue.js"></script>
   <!-- 注釈 -->
   <script src="js/comments.js"></script>
   <!-- 本体 -->

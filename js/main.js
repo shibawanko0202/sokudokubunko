@@ -1,5 +1,7 @@
 "use strict"
 
+//ロード画面
+const loading = document.getElementById('loading');
 //表紙
 const cover = document.getElementById("cover_bottom");
 const cover_reverse = document.getElementById("cover_reverse");
@@ -8,8 +10,8 @@ const cover_author = document.getElementById("cover_author");
 const cover_title = document.getElementById("cover_title");
 const textbord = document.getElementById("textbord");
 const after = document.getElementsByClassName("after");
-const start = document.getElementById("start");
-const stop = document.getElementById("stop");
+const start_btn = document.getElementById("start_btn");
+const stop_btn = document.getElementById("stop_btn");
 //目次
 const contents = document.getElementById("contents");
 const content = document.getElementsByClassName("content");
@@ -21,10 +23,10 @@ const seconds = document.getElementsByClassName("seconds");
 const turn = document.getElementById("turn");
 
 //書籍
-const books = [heart,walker,human,bereavement];
+const books = [prologue,heart,walker,human,bereavement];
 
 //選択タイトル
-let current_title = heart;
+let current_title;
 
 let bookmark = 0;
 let timer;
@@ -48,16 +50,31 @@ function flip_page(title){
   };
   if(bookmark == title.text.length -1){
     stopped();
-    start.classList.add("disabled");
+    start_btn.classList.add("disabled");
+
+    //はしがきの場合は表紙をめくる
+    if(current_title === prologue){
+    // turn_cover();
+    console.log("stop")
+    }
   };
   commentary(title);
   bookmark++;
 };
 
+function start(){
+  start_btn.classList.add("disabled");
+  stop_btn.classList.remove("disabled");
+  timer = setInterval(() => {
+    flip_page(current_title);
+  }, 250);
+  is_play = true;
+}
+
 //停止
 function stopped(){
-  start.classList.remove("disabled");
-  stop.classList.add("disabled");
+  start_btn.classList.remove("disabled");
+  stop_btn.classList.add("disabled");
   clearInterval(timer);
   is_play = false;
 };
@@ -108,32 +125,38 @@ function resize() {
   };
 };
 
+//最初の訪問でははしがきを自動再生
+function auto(){
+  start();
+  if((current_title === prologue) && (!is_play)){
+    // turn_cover();
+    console.log("stop")
+  }
+};
+
 //ブラウザサイズを変更するたびにリサイズ
 window.addEventListener('resize',resize);
 
-//ロード終了時にアニメーション
-window.onload = setTimeout(turn_cover, 750);
+//ロードが完了したらロード画面を終了し、アニメーション
+window.onload = ()=>{
+  loading.classList.add('loaded');
+  auto()
+  // setTimeout(turn_cover, 900);
+};
 
-//最初は「こころ」を表示しておく
+//最初は「はしがき」を表示しておく
 render_cover(0);
 
 //開始ボタン
-start.addEventListener("click",()=>{
-  start.classList.add("disabled");
-  stop.classList.remove("disabled");
-  timer = setInterval(() => {
-    flip_page(current_title);
-  }, 250);
-  is_play = true;
-});
+start_btn.addEventListener("click",start);
 
 //停止ボタン
-stop.addEventListener("click",stopped);
+stop_btn.addEventListener("click",stopped);
 
 //巻き戻し
 for(let i = 0;i < after.length;i++){
   after[i].addEventListener("click",()=>{
-    start.classList.remove("disabled");
+    start_btn.classList.remove("disabled");
     if(is_play){
       return;
     };
