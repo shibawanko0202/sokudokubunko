@@ -6,6 +6,7 @@
   --contents:rgb(240, 220, 178);
   --contentsShadow: rgba(172, 95, 7, .5);
   --ink: rgb(7, 23, 58);
+  --load: rgb(183, 90, 3);
 }
 html{
   width: 100%;
@@ -41,32 +42,52 @@ body{
 /* loading */
 
 #loading{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background-color: #eee;
+  background-image : linear-gradient(to right,
+    #eee,
+    #eee 10%,
+    var(--load) 11%,
+    var(--load) 12%,
+    transparent 13%,
+    transparent 87%,
+    var(--load) 88%,
+    var(--load) 89%,
+    #eee 90%,
+    #eee),
+    linear-gradient(to bottom,
+    transparent,
+    transparent 97%,
+    var(--load) 98%,
+    var(--load));
+  background-position: right 2px top;
+  background-size: 37px 29px;
   transition: all 1s;
-  background-color: #222;
   z-index: 9999;
 }
-.spinner{
-  width: 100px;
-  height: 100px;
-  margin: 200px auto;
-  background-color: #999;
-  opacity: .6;
-  border-radius: 100%;
-  animation: load 1s infinite ease-in-out;
+#loading p{
+  margin: 30px;
+  color: var(--ink);
+  font-family: 'segoe script';
+  font-size: 30px;
 }
-@keyframes load{
-  0% {
-    transform: scale(0);
-  }
-  100%{
-    transform: scale(1.0);
-    opacity: 0;
-  }
+#loading p span{
+  margin: 2px;
+  animation: flash 2.4s linear infinite;
+}
+#loading p span:nth-child(2){
+  animation-delay: .8s;
+}
+#loading p span:nth-child(3){
+  animation-delay: 1.6s;
 }
 .loaded{
   opacity: 0;
