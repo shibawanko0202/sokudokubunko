@@ -23,8 +23,6 @@ body{
   max-width: 480px;
   min-height: 400px;
   max-height: 700px;
-  background: linear-gradient(135deg, rgba(250, 239, 225, 0.4),rgba(255,255,255,0), rgba(0,0,0,.6)),url("../img/22987059_l.jpg");
-  background-size: contain;
   margin: auto;
   position: relative;
   font-family: 'Noto Serif JP', serif;
@@ -120,11 +118,9 @@ body{
 }
 #cover_middle{
   height: 100%;
-  width: 100%;
   padding: 45px;
-  background-image: url("../img/iwanami.png");
-  background-size: contain;
-  background-repeat: repeat;
+  background-image: url("../img/iwanami\(圧縮\).webp");
+  background-size: cover;
 }
 #cover_top{
   height: 100%;
@@ -371,6 +367,11 @@ footer{
 /* wide */
 
 @media(min-width: 480px){
+
+  html{
+    background: linear-gradient(135deg, rgba(250, 239, 225, 0.4),rgba(255,255,255,0), rgba(0,0,0,.6)),url("../img/机\(圧縮\).webp");
+    background-size: cover;
+  }
   #cover_middle{
     height: 100%;
     width: 100%;
