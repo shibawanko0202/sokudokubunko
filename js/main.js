@@ -145,8 +145,11 @@ function auto(){
 window.addEventListener('resize',resize);
 
 //ロード画面の終了と初回訪問時のアナウンス
-window.onload = ()=>{
-  loading.classList.add('loaded');
+function loaded(){
+  if(loading.classList.contains("loaded")){
+    return;
+  };
+  loading.classList.add("loaded");
   if (!localStorage.getItem(keyName)) {
     //初回訪問時の処理
     localStorage.setItem(keyName, keyValue);
@@ -159,6 +162,14 @@ window.onload = ()=>{
     setTimeout(turn_cover,1200);
   };
 };
+
+function loaded_delay(){
+  setTimeout(loaded,1500);//1.5秒くらいは表示したい
+};
+
+window.addEventListener("load",loaded_delay);
+setTimeout(loaded,5000); //遅くても5秒で強制終了
+
 
 //開始ボタン
 start_btn.addEventListener("click",start);
